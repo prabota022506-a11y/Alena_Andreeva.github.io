@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пространство решает — гайд Алёны Андреевой</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:wght@400;500&family=Montserrat:wght@200;300;400;500&display=swap&subset=cyrillic,latin" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2EEE6;
+  --paper-2:#EAE5DA;
+  --ink:#1A1917;
+  --ink-soft:#b9b0a4;
+  --ink-mute:#6E6860;
+  --rule:#C9C2B4;
+  --rule-dark:#3A3733;
+  --red:#8E2233;
+  --red-bright:#C2444A;
+  --paper-on-dark:#E4DED2;
+  --mute-on-dark:#9A938A;
+  --display:"Cormorant Garamond", Georgia, serif;
+  --body:"Lora", Georgia, serif;
+  --util:"Montserrat", Helvetica, Arial, sans-serif;
+  --padding: clamp(16px, 5vw, 60px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  padding: 0 var(--padding);
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:99;
+  opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+}
+img,svg{max-width:100%}
+a{color:inherit}
+
+.wrap{
+  max-width:100%;
+  margin:0 auto;
+  padding:0;}
+.narrow{max-width:64ch}
+
+/* ── типографика ─────────────────────────────── */
+h1,h2,h3,h4{font-family:var(--display);font-weight:500;margin:0}
+h2{font-size:clamp(32px,5.4vw,60px);line-height:1.06;letter-spacing:.005em}
+h3{font-size:clamp(23px,3vw,32px);line-height:1.18;margin-bottom:14px}
+h4{font-size:21px;line-height:1.25;margin-bottom:8px}
+p{margin:0 0 18px}
+.lead{font-size:clamp(17px,2.1vw,20px);line-height:1.8;color:var(--ink-soft)}
+.eyebrow{
+  font-family:var(--util);font-weight:300;font-size:10.5px;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--red);margin:0 0 18px;
+}
+.eyebrow.pale{color:var(--mute-on-dark)}
+.cap{
+  font-family:var(--util);font-weight:300;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink-mute);
+}
+.mark{
+  background-image:linear-gradient(var(--red),var(--red));
+  background-size:100% 1px;background-position:0 92%;background-repeat:no-repeat;
+  padding-bottom:2px;
+}
+strong{font-weight:500;color:var(--ink)}
+
+/* ── обложка ─────────────────────────────────── */
+.cover{
+  background:var(--ink);
+  color:var(--paper-on-dark);
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:clamp(28px,6vw,64px) var(--padding);
+  position:relative;
+  overflow:hidden;
+  margin: 0 calc(-1 * var(--padding));
+}
+.cover::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px) 0 0/72px 100%,
+    radial-gradient(120% 80% at 78% 6%,rgba(255,255,255,.07),transparent 60%);
+  opacity:.7;
+}
+.cover .wrap{position:relative;z-index:2;width:100%}
+.cover-top{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
+.cover-mid{padding:clamp(40px,8vh,90px) 0}
+.cover h1{
+  font-size:clamp(46px,10.5vw,124px);line-height:.95;font-weight:400;
+  letter-spacing:-.01em;color:var(--paper-on-dark);
+}
+.cover h1 em{font-style:italic;color:#fff}
+.cover-sub{
+  font-family:var(--util);font-weight:200;font-size:clamp(13px,1.6vw,16px);
+  line-height:1.9;letter-spacing:.02em;color:var(--mute-on-dark);
+  max-width:48ch;margin-top:clamp(24px,4vw,38px);
+}
+.cover-rule{
+  margin:clamp(26px,4vw,40px) 0 0;height:1px;background:var(--red-bright);width:min(320px,60%);
+  position:relative;
+}
+.cover-rule::before,.cover-rule::after{
+  content:"";position:absolute;top:-4px;width:1px;height:9px;background:var(--red-bright)
+}
+.cover-rule::before{left:0}.cover-rule::after{right:0}
+.cover-bottom{
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  border-top:1px solid rgba(255,255,255,.14);padding-top:20px;
+  font-family:var(--util);font-weight:300;font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute-on-dark);
+}
+
+/* ── навигация / оглавление ──────────────────── */
+.toc{padding:clamp(56px,9vw,110px) 0 clamp(40px,6vw,70px)}
+.toc ol{list-style:none;margin:34px 0 0;padding:0;counter-reset:c}
+.toc li{counter-increment:c;border-top:1px solid var(--rule)}
+.toc li:last-child{border-bottom:1px solid var(--rule)}
+.toc a{
+  display:flex;gap:clamp(14px,3vw,32px);align-items:baseline;
+  padding:15px 0;text-decoration:none;transition:padding-left .3s ease,color .3s ease;
+}
+.toc a:hover,.toc a:focus-visible{padding-left:10px;color:var(--red)}
+.toc a::before{
+  content:"0" counter(c);font-family:var(--util);font-weight:300;font-size:11px;
+  letter-spacing:.2em;color:var(--red);min-width:26px;
+}
+.toc .t{font-family:var(--display);font-size:clamp(19px,2.6vw,26px);line-height:1.2;flex:1}
+.toc .d{font-family:var(--util);font-weight:300;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-mute);text-align:right;max-width:36%}
+
+/* ── секции ──────────────────────────────────── */
+.chapter{padding:clamp(64px,10vw,132px) 0;border-top:1px solid var(--rule)}
+.chapter-head{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(18px,3vw,30px);margin-bottom:clamp(34px,5vw,56px)}
+.chapter-num{
+  font-family:var(--util);font-weight:300;font-size:11px;letter-spacing:.32em;color:var(--red)
+}
+.dim{position:relative;height:1px;background:var(--rule);margin:clamp(40px,6vw,72px) 0}
+.dim::before,.dim::after{content:"";position:absolute;top:-5px;width:1px;height:11px;background:var(--rule)}
+.dim::before{left:0}.dim::after{right:0}
+
+/* ── карточки исследований ───────────────────── */
+.grid{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:clamp(30px,4vw,46px)}
+.grid.two{grid-template-columns:repeat(2,1fr)}
+.grid.three{grid-template-columns:repeat(3,1fr)}
+.cell{background:var(--paper);padding:clamp(22px,3vw,32px)}
+.cell .num{
+  font-family:var(--util);font-weight:300;font-size:10.5px;letter-spacing:.26em;
+  color:var(--red);display:block;margin-bottom:14px
+}
+.cell p{font-size:15px;line-height:1.75;color:var(--ink-soft);margin-bottom:12px}
+.cell p:last-child{margin-bottom:0}
+.src{
+  font-family:var(--util);font-weight:300;font-size:10.5px;letter-spacing:.08em;
+  color:var(--ink-mute);line-height:1.6;display:block;margin-top:14px;
+  padding-top:12px;border-top:1px solid var(--rule)
+}
+.do{color:var(--ink);font-size:15px}
+.do b{font-family:var(--util);font-weight:400;font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--red);display:block;margin-bottom:4px}
+
+/* ── персона ─────────────────────────────────── */
+.persona{border-top:1px solid var(--rule)}
+.persona-hero{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,56px);
+  align-items:end;padding:clamp(54px,8vw,104px) 0 clamp(28px,4vw,44px)
+}
+.persona-hero .who{
+  font-family:var(--util);font-weight:200;font-size:12px;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--ink-mute);margin-bottom:16px
+}
+.bars{margin-top:6px}
+.bar{display:grid;grid-template-columns:minmax(88px,26%) 1fr auto;gap:14px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule)}
+.bar:first-child{border-top:1px solid var(--rule)}
+.bar .l{font-family:var(--util);font-weight:300;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute)}
+.bar .t{height:2px;background:var(--rule);position:relative}
+.bar .t i{position:absolute;inset:0 auto 0 0;background:var(--red);display:block}
+.bar .v{font-family:var(--util);font-weight:300;font-size:10px;letter-spacing:.14em;color:var(--ink-mute)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,4vw,54px);margin-top:clamp(28px,4vw,44px)}
+.plate{background:var(--paper-2);padding:clamp(24px,3.4vw,36px);border-left:2px solid var(--red)}
+.plate h4{margin-bottom:14px}
+ul.check{list-style:none;margin:0;padding:0}
+ul.check li{position:relative;padding-left:26px;margin-bottom:12px;font-size:15px;line-height:1.7;color:var(--ink-soft)}
+ul.check li::before{
+  content:"";position:absolute;left:0;top:11px;width:12px;height:1px;background:var(--red)
+}
+ul.check li:last-child{margin-bottom:0}
+ul.no li::before{background:var(--ink-mute);width:12px;box-shadow:0 0 0 0 transparent}
+ul.no li{color:var(--ink-soft)}
+.quote{
+  font-family:var(--display);font-size:clamp(21px,3.2vw,30px);line-height:1.35;
+  color:var(--ink);max-width:34ch;margin:clamp(30px,4vw,48px) 0;position:relative;padding-left:24px
+}
+.quote::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:1px;background:var(--red)}
+.quote span{display:block;font-family:var(--util);font-weight:300;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mute);margin-top:16px}
+
+/* ── чертёж ─────────────────────────────────── */
+.figure{margin:clamp(34px,5vw,58px) 0}
+.figure svg{display:block;width:100%;height:auto}
+.figcap{
+  font-family:var(--util);font-weight:300;font-size:10.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink-mute);margin-top:14px;
+  padding-top:10px;border-top:1px solid var(--rule);display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap
+}
+.figcap b{font-weight:400;color:var(--red)}
+
+/* ── стоп-лист ──────────────────────────────── */
+.stop{border-top:1px solid var(--rule-dark)}
+.stop-row{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:clamp(12px,3vw,40px);
+  padding:22px 0;border-bottom:1px solid var(--rule)
+}
+.stop-row .what{font-family:var(--display);font-size:clamp(19px,2.4vw,24px);line-height:1.25}
+.stop-row .why{font-size:15px;line-height:1.7;color:var(--ink-soft)}
+.stop-row .why b{font-family:var(--util);font-weight:400;font-size:10.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--red);display:block;margin-bottom:4px}
+
+/* ── тёмные блоки ───────────────────────────── */
+.dark{background:var(--ink);color:var(--paper-on-dark)}
+.dark h2,.dark h3,.dark h4{color:var(--paper-on-dark)}
+.dark .lead,.dark p{color:var(--mute-on-dark)}
+.dark .cap{color:var(--mute-on-dark)}
+.dark ul.check li{color:var(--mute-on-dark)}
+.dark ul.check li::before{background:var(--red-bright)}
+
+/* ── протокол ───────────────────────────────── */
+.steps{counter-reset:s;margin-top:clamp(30px,4vw,48px)}
+.step{
+  counter-increment:s;display:grid;grid-template-columns:56px 1fr;gap:clamp(14px,3vw,30px);
+  padding:24px 0;border-top:1px solid rgba(255,255,255,.14)
+}
+.step:last-child{border-bottom:1px solid rgba(255,255,255,.14)}
+.step::before{
+  content:"0" counter(s);font-family:var(--util);font-weight:300;font-size:11px;
+  letter-spacing:.2em;color:var(--red-bright);padding-top:8px
+}
+.step h4{color:var(--paper-on-dark);margin-bottom:6px}
+.step p{margin:0;font-size:15px;line-height:1.72}
+
+/* ── CTA ─────────────────────────────────────── */
+.cta{padding:clamp(72px,12vw,150px) 0;text-align:center}
+.cta h2{font-size:clamp(34px,6.4vw,74px);line-height:1.02;max-width:16ch;margin:0 auto}
+.cta .lead{max-width:46ch;margin:26px auto 0;color:var(--mute-on-dark)}
+.btn{
+  display:inline-block;margin-top:clamp(30px,4vw,46px);padding:19px 46px;
+  border:1px solid var(--red-bright);color:var(--paper-on-dark);text-decoration:none;
+  font-family:var(--util);font-weight:300;font-size:12px;letter-spacing:.28em;text-transform:uppercase;
+  transition:background .35s ease,color .35s ease,letter-spacing .35s ease
+}
+.btn:hover,.btn:focus-visible{background:var(--red);color:#fff;letter-spacing:.34em}
+.contacts{
+  margin-top:clamp(40px,6vw,72px);padding-top:26px;border-top:1px solid rgba(255,255,255,.14);
+  display:flex;justify-content:center;gap:clamp(20px,5vw,64px);flex-wrap:wrap;
+  font-family:var(--util);font-weight:300;font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute-on-dark)
+}
+.contacts a{color:var(--paper-on-dark);text-decoration:none;border-bottom:1px solid var(--red-bright);padding-bottom:3px}
+
+/* ── источники ──────────────────────────────── */
+.sources{padding:clamp(50px,7vw,90px) 0;border-top:1px solid var(--rule)}
+.sources ul{list-style:none;margin:26px 0 0;padding:0;columns:2;column-gap:clamp(24px,5vw,56px)}
+.sources li{
+  break-inside:avoid;font-size:13.5px;line-height:1.65;color:var(--ink-soft);
+  padding:10px 0;border-bottom:1px solid var(--rule)
+}
+.sources li b{font-weight:500;color:var(--ink)}
+footer{padding:34px 0 46px;border-top:1px solid var(--rule)}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-family:var(--util);font-weight:300;font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink-mute)}
+
+/* ── анимация ───────────────────────────────── */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+@media (max-width:820px){
+  .grid.three{grid-template-columns:repeat(2,1fr)}
+  .persona-hero{grid-template-columns:1fr;align-items:start}
+  .split{grid-template-columns:1fr}
+  .sources ul{columns:1}
+}
+@media (max-width:620px){
+  .grid.two,.grid.three{grid-template-columns:1fr}
+  .stop-row{grid-template-columns:1fr;gap:8px}
+  .toc .d{display:none}
+  .toc a{gap:16px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .btn{transition:none}
+}
+@media (max-width: 700px) {
+  body {
+    padding: 0 16px; /* фиксированные отступы на телефонах */
+  }
+  
+  .cover {
+    padding: clamp(20px, 4vw, 40px) 16px;
+    margin: 0 -16px;
+  }
+  
+  .cover-mid {
+    padding: clamp(30px, 6vh, 60px) 0;
+  }
+  
+  .toc {
+    padding: clamp(30px, 6vw, 50px) 0;
+  }
+  
+    .toc ol {
+    margin: 0;      /* убираем лишние отступы у списка */
+    padding: 0;     /* убираем лишние отступы у списка */
+  }
+  
+  .toc li {
+    padding: 10px 0; /* уменьшаем отступы между пунктами */
+  }
+  
+  .chapter {
+    padding: clamp(30px, 6vw, 50px) 0;
+  }
+  
+  .cta {
+    padding: clamp(40px, 8vw, 70px) 0;
+  }
+  
+  .sources {
+    padding: clamp(30px, 6vw, 50px) 0;
+  }
+  
+  footer {
+    padding: 20px 0 30px;
+  }
+}
+@media print{
+  body::before{display:none}
+  .cover{min-height:auto}
+  .chapter,.persona{break-inside:avoid}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ОБЛОЖКА -->
+<header class="cover">
+  <div class="wrap cover-top">
+    <span class="eyebrow pale" style="margin:0">Гайд · издание 2026</span>
+    <span class="eyebrow pale" style="margin:0">Андреева Алёна · инвестиционная недвижимость</span>
+  </div>
+
+  <div class="wrap cover-mid">
+    <h1>Пространство<br><em>решает</em></h1>
+    <div class="cover-rule"></div>
+    <p class="cover-sub">
+      Как планировка, свет, этаж и район вашего дома управляют вниманием,
+      сном, решениями и доходом.
+      Разобираю отдельно для трёх сценариев жизни: творец, семья, лидер.
+    </p>
+  </div>
+
+  <div class="wrap cover-bottom">
+    <span>7 разделов · 20 минут чтения</span>
+    <span>Опора: 12 исследований и 7 книг</span>
+  </div>
+</header>
+
+<!-- ВСТУПЛЕНИЕ + ОГЛАВЛЕНИЕ -->
+<section class="wrap toc">
+  <p class="eyebrow">Как читать</p>
+  <div class="narrow">
+    <p class="lead">
+      Этот гайд не про ремонт и не про стиль. Он про то, что квартира — это набор
+      ежедневных условий: сколько света попадает вам на сетчатку до полудня, на каком
+      расстоянии от вас находится то, чем вы хотите заниматься, слышите ли вы соседский
+      лифт в 6 утра, встречаете ли вы людей во дворе.
+    </p>
+    <p class="lead">
+      Эти условия повторяются 365 дней в году. Именно поэтому среда сильнее мотивации. <b>Вы не выбираете квартиру.
+      Вы выбираете, каким человеком будете в ней каждый день.</b>
+    </p>
+    <p class="lead">
+      Разделы 2–4 — три разных сценария жизни. Начните со своего, но прочитайте все три:
+      в одной квартире часто живёт творец, семья и руководитель одновременно.
+    </p>
+  </div>
+
+  <ol>
+    <li><a href="#s1"><span class="t">Что доказано наукой</span><span class="d">8 механизмов среды</span></a></li>
+    <li><a href="#s2"><span class="t">творец</span><span class="d">квартира как инструмент</span></a></li>
+    <li><a href="#s3"><span class="t">Семья</span><span class="d">приватность и общий центр</span></a></li>
+    <li><a href="#s4"><span class="t">Лидер</span><span class="d">сцена и кулисы</span></a></li>
+    <li><a href="#s5"><span class="t">Этаж, планировка, окружение</span><span class="d">и связь с доходом</span></a></li>
+    <li><a href="#s6"><span class="t">Стоп-лист покупателя</span><span class="d">что не покупать</span></a></li>
+    <li><a href="#s7"><span class="t">Как я помогаю выбрать</span><span class="d">протокол подбора</span></a></li>
+  </ol>
+</section>
+
+<!-- 01 — НАУКА -->
+<section class="chapter wrap reveal" id="s1">
+  <div class="chapter-head">
+    <span class="chapter-num">01 / 07</span>
+    <h2>Восемь механизмов,<br>которыми стены влияют<br>на человека</h2>
+    <p class="lead narrow">
+      Ниже — только те эффекты, которые проверяли экспериментально. Для каждого:
+      что обнаружили учёные и что из этого следует при выборе квартиры.
+      Без метафор и без эзотерики.
+    </p>
+  </div>
+
+  <div class="grid two">
+    <div class="cell">
+      <span class="num">Механизм 01 · внимание</span>
+      <h4>Визуальный беспорядок забирает мощность мозга</h4>
+      <p>Объекты в поле зрения конкурируют за одни и те же ресурсы зрительной коры. Чем больше конкурирующих стимулов, тем хуже мозг выделяет то, на чём вы хотите сосредоточиться. Усталость от «неубранной комнаты» — не лень, а измеримая нагрузка.</p>
+      <p class="do"><b>Что это значит при покупке</b>Нужна квартира, где хватает мест хранения без мебельных «пристроек»: гардеробная, ниши, кладовая. Считайте не квадратные метры, а метры закрытого хранения.</p>
+      <span class="src">McMains &amp; Kastner, Journal of Neuroscience, 2011 (Princeton Neuroscience Institute)</span>
+    </div>
+
+    <div class="cell">
+      <span class="num">Механизм 02 · тип мышления</span>
+      <h4>Высота потолка переключает режим мышления</h4>
+      <p>В экспериментах люди в помещении с потолком около 3 м лучше решали задачи на абстрактные связи и творческие ассоциации, а при потолке около 2,4 м — задачи на детали и проверку. Эффект назвали «эффектом собора».</p>
+      <p class="do"><b>Что это значит при покупке</b>Если ваша работа — идеи, стратегия, дизайн, архитектура решений, потолок от 3 м важнее лишней комнаты. Если работа — точность и контроль, высокий потолок не критичен.</p>
+      <span class="src">Meyers-Levy &amp; Zhu, Journal of Consumer Research, 2007</span>
+    </div>
+
+    <div class="cell">
+      <span class="num">Механизм 03 · энергия</span>
+      <h4>Утренний свет задаёт сон и работоспособность</h4>
+      <p>Яркость дневного света в разы выше комнатного, и именно она синхронизирует внутренние часы. В исследовании офисных сотрудников те, кто работал у окна, спали в среднем почти на час дольше и лучше оценивали своё состояние, чем коллеги без окон.</p>
+      <p class="do"><b>Что это значит при покупке</b>Смотрите не на «сторону света» абстрактно, а на реальный сценарий: где вы завтракаете и работаете утром и попадает ли туда прямое небо, а не стена соседнего корпуса.</p>
+      <span class="src">Boubekri et al., Journal of Clinical Sleep Medicine, 2014</span>
+    </div>
+
+    <div class="cell">
+      <span class="num">Механизм 04 · восстановление</span>
+      <h4>Вид на природу восстанавливает быстрее, чем отдых у стены</h4>
+      <p>Классическое исследование: пациенты после одинаковой операции, чьи окна выходили на деревья, выписывались раньше и просили меньше сильных обезболивающих, чем пациенты с видом на кирпичную стену. Природные сцены дают вниманию отдохнуть без усилия.</p>
+      <p class="do"><b>Что это значит при покупке</b>Вид — это не «приятный бонус», а рабочий параметр здоровья. Минимум: зелень или открытая перспектива из окна той комнаты, где вы проводите больше всего часов.</p>
+      <span class="src">Ulrich, Science, 1984; Kaplan &amp; Kaplan, теория восстановления внимания</span>
+    </div>
+
+    <div class="cell">
+      <span class="num">Механизм 05 · стресс</span>
+      <h4>Шум — самый недооценённый налог на жизнь</h4>
+      <p>У детей из классов, выходивших на надземную линию метро, чтение отставало от сверстников на другой стороне здания; после шумоизоляции разница исчезла. ВОЗ относит постоянный транспортный шум к факторам риска для сна и сердечно-сосудистой системы.</p>
+      <p class="do"><b>Что это значит при покупке</b>Слушайте квартиру, а не смотрите. Приезжайте в будни в 7:30 и в пятницу в 23:00, откройте окно на 5 минут. Шум невозможно «отремонтировать» до конца.</p>
+      <span class="src">Bronzaft &amp; McCarthy, 1975; WHO Environmental Noise Guidelines, 2018</span>
+    </div>
+
+    <div class="cell">
+      <span class="num">Механизм 06 · контроль</span>
+      <h4>Право менять пространство под себя повышает результат</h4>
+      <p>В серии экспериментов люди работали заметно продуктивнее, когда им разрешали самим обустроить рабочее место, чем когда пространство оформляли за них. Ощущение авторства над средой — отдельный фактор эффективности.</p>
+      <p class="do"><b>Что это значит при покупке</b>Избегайте планировок, которые диктуют единственный вариант расстановки. Ценность квартиры — в количестве осмысленных сценариев, которые в ней помещаются.</p>
+      <span class="src">Knight &amp; Haslam, Journal of Experimental Psychology: Applied, 2010</span>
+    </div>
+
+    <div class="cell">
+      <span class="num">Механизм 07 · скученность</span>
+      <h4>Важнее метража — число людей на комнату</h4>
+      <p>Стресс от тесноты возникает не от малой площади, а от невозможности регулировать контакт: когда нельзя закрыть дверь и побыть одному. Это ключевой фактор конфликтности и утомления в семьях.</p>
+      <p class="do"><b>Что это значит при покупке</b>Считайте не «сколько метров», а «сколько дверей». У каждого члена семьи должна быть хотя бы одна точка, где он может закрыться на час.</p>
+      <span class="src">Evans, обзоры по crowding и built environment; Altman, теория приватности</span>
+    </div>
+
+    <div class="cell">
+      <span class="num">Механизм 08 · время</span>
+      <h4>Дорога съедает благополучие, и к ней не привыкают</h4>
+      <p>Длинная ежедневная дорога устойчиво снижает удовлетворённость жизнью, и люди почти не адаптируются к ней со временем. Утренняя поездка регулярно попадает в список самых неприятных занятий дня.</p>
+      <p class="do"><b>Что это значит при покупке</b>Лишние 25 минут в одну сторону — это около 200 часов в год. Часто выгоднее купить на 12 м² меньше, но в 15 минутах от точек вашей ежедневной жизни.</p>
+      <span class="src">Stutzer &amp; Frey, «commuting paradox», 2008; Kahneman &amp; Krueger, 2004</span>
+    </div>
+  </div>
+
+  <div class="dim"></div>
+
+  <div class="figure">
+    <svg viewBox="0 0 900 300" role="img" aria-label="Схема: как среда превращается в доход">
+      <g fill="none" stroke="var(--rule)" stroke-width="1">
+        <rect x="20" y="90" width="150" height="82"/>
+        <rect x="250" y="40" width="170" height="60"/>
+        <rect x="250" y="118" width="170" height="60"/>
+        <rect x="250" y="196" width="170" height="60"/>
+        <rect x="500" y="90" width="170" height="82"/>
+        <rect x="750" y="90" width="130" height="82"/>
+      </g>
+      <g stroke="var(--rule)" stroke-width="1" fill="none">
+        <path d="M170 131 L250 70 M170 131 L250 148 M170 131 L250 226"/>
+        <path d="M420 70 L500 118 M420 148 L500 131 M420 226 L500 144"/>
+        <path d="M670 131 L750 131"/>
+      </g>
+      <g fill="var(--ink)" font-family="Cormorant Garamond, serif" font-size="21">
+        <text x="95" y="126" text-anchor="middle">Среда</text>
+        <text x="335" y="76" text-anchor="middle">Сон и энергия</text>
+        <text x="335" y="154" text-anchor="middle">Внимание</text>
+        <text x="335" y="232" text-anchor="middle">Спокойствие</text>
+        <text x="585" y="126" text-anchor="middle">Качество</text>
+        <text x="585" y="152" text-anchor="middle">решений</text>
+        <text x="815" y="139" text-anchor="middle">Доход</text>
+      </g>
+      <g fill="var(--ink-mute)" font-family="Montserrat, sans-serif" font-size="9" letter-spacing="2">
+        <text x="95" y="148" text-anchor="middle">ПОСТОЯННЫЙ ФОН</text>
+        <text x="335" y="94" text-anchor="middle">СВЕТ · ТИШИНА · ВИД</text>
+        <text x="335" y="172" text-anchor="middle">ПОРЯДОК · ЗОНЫ</text>
+        <text x="335" y="250" text-anchor="middle">ПРИВАТНОСТЬ · ДОРОГА</text>
+        <text x="585" y="172" text-anchor="middle">ФОКУС · ВЫДЕРЖКА</text>
+      </g>
+      <g stroke="var(--red)" stroke-width="1" fill="none" stroke-dasharray="3 3">
+        <path d="M95 172 L95 275 L815 275 L815 172"/>
+      </g>
+      <text x="455" y="292" text-anchor="middle" fill="var(--red)" font-family="Montserrat, sans-serif" font-size="9.5" letter-spacing="2.5">ВТОРОЙ КОНТУР: ПРАВИЛЬНАЯ СРЕДА = ЛИКВИДНЫЙ АКТИВ</text>
+      <g stroke="var(--red)" stroke-width="1"><path d="M690 60 L730 60"/><path d="M730 60 l-6 -3 M730 60 l-6 3" fill="none"/></g>
+      <text x="686" y="56" text-anchor="end" fill="var(--red)" font-family="Montserrat, sans-serif" font-size="9.5" letter-spacing="2">КВАРТИРА НЕ ДАЁТ ДЕНЕГ. ОНА ВОЗВРАЩАЕТ РЕСУРС</text>
+    </svg>
+    <div class="figcap"><span>Схема 1 · механика влияния</span><b>Красным — правка архитектора</b></div>
+  </div>
+</section>
+
+<!-- 02 — творец -->
+<section class="persona" id="s2">
+  <div class="wrap">
+    <div class="persona-hero">
+      <div>
+        <span class="chapter-num">02 / 07</span>
+        <p class="who" style="margin-top:16px"> <b>квартира для творца:</b> разработчика, дизайнера, продакта, аналитика</p>
+        <h2>Квартира<br>как инструмент<br>концентрации</h2>
+      </div>
+      <div>
+        <p class="lead">
+          Ваш основной актив — непрерывные блоки внимания по 2–4 часа. Всё, что рвёт
+          эти блоки, стоит вам денег напрямую: прерывание выбивает из глубокой работы
+          надолго, и вернуться в неё стоит усилий. Квартира должна защищать
+          концентрацию и при этом давать выход из неё, иначе вы выгорите в собственном кабинете.
+        </p>
+        <div class="bars">
+          <div class="bar"><span class="l">Тишина</span><span class="t"><i style="width:100%"></i></span><span class="v">критично</span></div>
+          <div class="bar"><span class="l">Свет</span><span class="t"><i style="width:88%"></i></span><span class="v">очень важно</span></div>
+          <div class="bar"><span class="l">Потолок</span><span class="t"><i style="width:80%"></i></span><span class="v">важно</span></div>
+          <div class="bar"><span class="l">Площадь</span><span class="t"><i style="width:45%"></i></span><span class="v">умеренно</span></div>
+          <div class="bar"><span class="l">Район</span><span class="t"><i style="width:72%"></i></span><span class="v">важно</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="figure">
+      <svg viewBox="0 0 1010 340" role="img" aria-label="План квартиры для создателя">
+        <g fill="none" stroke="var(--ink)" stroke-width="1.4">
+          <rect x="60" y="40" width="620" height="250"/>
+        </g>
+        <g fill="none" stroke="var(--ink)" stroke-width="1">
+          <path d="M300 40 L300 175 M300 175 L680 175 M480 175 L480 290 M60 230 L300 230"/>
+        </g>
+        <!-- окна -->
+        <g stroke="var(--rule)" stroke-width="4">
+          <path d="M90 40 L270 40"/><path d="M330 40 L650 40"/><path d="M680 90 L680 160"/>
+        </g>
+        <g fill="var(--ink)" font-family="Cormorant Garamond, serif" font-size="20">
+          <text x="180" y="115">Рабочее ядро</text>
+          <text x="490" y="115">Спальня</text>
+          <text x="180" y="265">Кухня</text>
+          <text x="380" y="240">Гостиная</text>
+          <text x="580" y="240">Хранение</text>
+        </g>
+        <g fill="var(--ink-mute)" font-family="Montserrat, sans-serif" font-size="9" letter-spacing="2">
+          <text x="180" y="136">СВЕТ СЛЕВА · ВИД ВДАЛЬ</text>
+          <text x="490" y="136">ГЛУХАЯ ЗОНА · БЕЗ ЭКРАНОВ</text>
+          <text x="180" y="284">БУФЕР МЕЖДУ РАБОТОЙ И СНОМ</text>
+        </g>
+        <!-- красные пометки -->
+        <g stroke="var(--red)" stroke-width="1" fill="none">
+          <path d="M75 90 L285 90" stroke-dasharray="4 4"/>
+          <path d="M75 86 L75 94 M285 86 L285 94"/>
+          <circle cx="300" cy="175" r="16"/>
+          <path d="M316 175 L400 130"/>
+          <path d="M700 205 L760 205"/>
+        </g>
+        <g fill="var(--red)" font-family="Montserrat, sans-serif" font-size="9.5" letter-spacing="2">
+          <text x="180" y="80" text-anchor="middle">ЛИНИЯ ВЗГЛЯДА ОТ СТОЛА — НЕ МЕНЕЕ 4 М</text>
+          <text x="405" y="126">ДВЕ ДВЕРИ МЕЖДУ СТОЛОМ И КРОВАТЬЮ</text>
+          <text x="765" y="200">ПРАВИЛО:</text>
+          <text x="765" y="214">СТОЛ — У ОКНА,</text>
+          <text x="765" y="228">СПИНОЙ К СТЕНЕ,</text>
+          <text x="765" y="242">ДВЕРЬ В ПОЛЕ ЗРЕНИЯ</text>
+        </g>
+        <text x="60" y="315" fill="var(--ink-mute)" font-family="Montserrat, sans-serif" font-size="9" letter-spacing="2">СХЕМА 2 · ЗОНИРОВАНИЕ ДЛЯ ГЛУБОКОЙ РАБОТЫ</text>
+      </svg>
+      <div class="figcap"><span>Принцип: работа и сон не должны видеть друг друга</span><b>Оптимум: 2 комнаты + ниша</b></div>
+    </div>
+
+    <div class="split">
+      <div>
+        <h3>Что должно быть в квартире</h3>
+        <ul class="check">
+          <li><strong>Рабочее место у окна, но не лицом в окно.</strong> Свет должен падать сбоку: так нет засветки экрана и есть куда отвести взгляд каждые 20 минут. Глаз отдыхает только на дальней точке — отсюда требование к линии взгляда от 4 метров.</li>
+          <li><strong>Обзор + защита.</strong> Люди устойчиво предпочитают позицию, где спина закрыта, а вход виден. Стол посреди комнаты спиной к двери держит вас в лёгком напряжении весь день.</li>
+          <li><strong>Два порога между работой и сном.</strong> Если ноутбук стоит в спальне, мозг перестаёт различать режимы: хуже засыпание и хуже вход в работу. Идеально — отдельная комната, минимум — ниша с дверью или плотной шторой.</li>
+          <li><strong>Потолок от 3 метров, если ваша работа — идеи.</strong> Для архитектуры решений, продукта и дизайна высокий потолок даёт измеримый выигрыш в абстрактном мышлении.</li>
+          <li><strong>Акустическая тишина по паспорту.</strong> Монолит вместо панели, спальня не смежная с лифтовой шахтой и лестницей, окна с двухкамерным стеклопакетом и режимом микропроветривания.</li>
+          <li><strong>Выход в социальность за 5 минут пешком.</strong> Кофейня, спортзал, парк. Изоляция на удалённой работе — главный риск профессии; окружение должно вытаскивать вас из дома без усилия воли.</li>
+          <li><strong>Один короткий сценарий движения утром.</strong> Кровать → вода → свет → стол. Чем меньше шагов и препятствий, тем стабильнее режим: поведение определяется не силой воли, а простотой действия.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="plate">
+          <h4>Что не покупать создателю</h4>
+          <ul class="check no">
+            <li><strong>Студию без ниши.</strong> Одно помещение = один режим. Вы будете работать в кровати и спать в офисе.</li>
+            <li><strong>Квартиру окнами в стену соседнего корпуса ближе 15 м.</strong> Нет ни дальнего взгляда, ни утреннего света, ни приватности.</li>
+            <li><strong>Первый и второй этаж во дворе с детской площадкой.</strong> Пик шума совпадает с вашими рабочими часами.</li>
+            <li><strong>Квартиру над входной группой, лифтом, кафе или магазином.</strong> Постоянный низкочастотный фон и вибрация, которые не убираются ремонтом.</li>
+            <li><strong>Панорамное остекление на юго-запад без солнцезащиты.</strong> После 15:00 перегрев и блики на экране; кондиционер работает вместо стен.</li>
+            <li><strong>Длинный коридор.</strong> В маленькой квартире он съедает те 8–10 м², из которых и получается рабочая зона.</li>
+          </ul>
+        </div>
+        <p class="quote">Первое, на что нужно обращать внимание — фон. <span>Принцип выбора №1</span></p>
+      </div>
+    </div>
+    <div class="dim"></div>
+  </div>
+</section>
+
+<!-- 03 — СЕМЬЯ -->
+<section class="persona" id="s3">
+  <div class="wrap">
+    <div class="persona-hero">
+      <div>
+        <span class="chapter-num">03 / 07</span>
+        <p class="who" style="margin-top:16px"><b>квартира для семьи</b> · двое взрослых и дети</p>
+        <h2>Общий центр<br>и право<br>закрыть дверь</h2>
+      </div>
+      <div>
+        <p class="lead">
+          В семейной квартире две противоположные задачи. Первая — собирать людей вместе,
+          иначе семья превращается в соседей по коридору. Вторая — давать каждому
+          возможность уйти. Конфликты в доме почти всегда растут не из тесноты как таковой,
+          а из невозможности регулировать контакт: когда нельзя побыть одному, нервная система
+          не восстанавливается.
+        </p>
+        <div class="bars">
+          <div class="bar"><span class="l">Приватность</span><span class="t"><i style="width:100%"></i></span><span class="v">критично</span></div>
+          <div class="bar"><span class="l">Общий центр</span><span class="t"><i style="width:92%"></i></span><span class="v">критично</span></div>
+          <div class="bar"><span class="l">Двор и школа</span><span class="t"><i style="width:88%"></i></span><span class="v">очень важно</span></div>
+          <div class="bar"><span class="l">Этаж</span><span class="t"><i style="width:70%"></i></span><span class="v">важно</span></div>
+          <div class="bar"><span class="l">Статус дома</span><span class="t"><i style="width:35%"></i></span><span class="v">второстепенно</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="figure">
+      <svg viewBox="0 0 1010 340" role="img" aria-label="План квартиры для семьи">
+        <g fill="none" stroke="var(--ink)" stroke-width="1.4"><rect x="60" y="40" width="620" height="250"/></g>
+        <g fill="none" stroke="var(--ink)" stroke-width="1">
+          <path d="M240 40 L240 290 M480 40 L480 290 M240 165 L60 165 M480 165 L680 165"/>
+        </g>
+        <g stroke="var(--rule)" stroke-width="4">
+          <path d="M90 40 L210 40"/><path d="M510 40 L650 40"/><path d="M90 290 L210 290"/><path d="M510 290 L650 290"/>
+        </g>
+        <g fill="var(--ink)" font-family="Cormorant Garamond, serif" font-size="20">
+          <text x="150" y="105" text-anchor="middle">Детская</text>
+          <text x="150" y="235" text-anchor="middle">Детская</text>
+          <text x="360" y="160" text-anchor="middle">Кухня-гостиная</text>
+          <text x="360" y="192" text-anchor="middle">общий центр</text>
+          <text x="580" y="105" text-anchor="middle">Спальня</text>
+          <text x="580" y="235" text-anchor="middle">Кабинет</text>
+        </g>
+        <g fill="var(--ink-mute)" font-family="Montserrat, sans-serif" font-size="9" letter-spacing="2">
+          <text x="150" y="124" text-anchor="middle">ЛИЧНАЯ ТЕРРИТОРИЯ</text>
+          <text x="150" y="254" text-anchor="middle">ЛИЧНАЯ ТЕРРИТОРИЯ</text>
+          <text x="580" y="124" text-anchor="middle">ВЗРОСЛОЕ КРЫЛО</text>
+          <text x="580" y="254" text-anchor="middle">ТОЧКА УЕДИНЕНИЯ</text>
+        </g>
+        <g stroke="var(--red)" stroke-width="1" fill="none">
+          <rect x="256" y="56" width="208" height="218" stroke-dasharray="4 4"/>
+          <path d="M360 40 L360 20 M300 20 L420 20"/>
+          <path d="M700 90 L760 90"/><path d="M700 250 L760 250"/>
+        </g>
+        <g fill="var(--red)" font-family="Montserrat, sans-serif" font-size="9.5" letter-spacing="2">
+          <text x="360" y="14" text-anchor="middle">ЗОНА ВСТРЕЧ · ВСЕ ПУТИ ПРОХОДЯТ ЗДЕСЬ</text>
+          <text x="765" y="80">ДЕТСКИЕ И СПАЛЬНЯ</text>
+          <text x="765" y="94">РАЗНЕСЕНЫ ПО ШУМУ</text>
+          <text x="765" y="244">ДВА САНУЗЛА —</text>
+          <text x="765" y="258">НЕ РОСКОШЬ, А УТРО</text>
+        </g>
+        <text x="60" y="315" fill="var(--ink-mute)" font-family="Montserrat, sans-serif" font-size="9" letter-spacing="2">СХЕМА 3 · ЦЕНТР ПРИТЯЖЕНИЯ + ПРИВАТНЫЕ КАПСУЛЫ</text>
+      </svg>
+      <div class="figcap"><span>Принцип: короткий путь друг к другу, закрываемая дверь у каждого</span><b>Оптимум: 3 комнаты + 2 санузла</b></div>
+    </div>
+
+    <div class="split">
+      <div>
+        <h3>Что должно быть в квартире</h3>
+        <ul class="check">
+          <li><strong>Кухня-гостиная как центр, а не как коридор.</strong> Семья собирается там, где есть еда, свет и место сесть всем сразу. Это единственная зона, на которой не стоит экономить метры.</li>
+          <li><strong>Точка уединения для каждого.</strong> Не обязательно комната: закрываемая ниша, кабинет, даже балкон с дверью. Важно право закрыться, а не площадь.</li>
+          <li><strong>Второй санузел.</strong> Он решает не гигиену, а утренний конфликт — самую частую точку напряжения в семье из трёх и более человек.</li>
+          <li><strong>Детские не смежные со спальней родителей.</strong> Спальня взрослых — единственное место, где сохраняется пара, а не только родители. Она должна быть тише всей квартиры.</li>
+          <li><strong>Двор без сквозного проезда.</strong> Дети гуляют сами только там, где взрослый видит площадку из окна и где нет машин. Это прямо определяет, сколько времени ребёнок проводит на улице, а не в экране.</li>
+          <li><strong>Школа и садик в пешей доступности.</strong> Проверяйте не расстояние, а маршрут: сколько переходов, есть ли светофоры, освещён ли путь зимой.</li>
+          <li><strong>Место для «грязного» хранения.</strong> Коляска, самокаты, лыжи, чемоданы. Если этого нет, беспорядок переезжает в гостиную — и включается механизм №1 из первого раздела.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="plate">
+          <h4>Что не покупать семье</h4>
+          <ul class="check no">
+            <li><strong>Высокий этаж в башне при маленьких детях.</strong> Чем выше этаж, тем реже дети выходят во двор сами и тем изолированнее родитель, который с ними дома. Для дошкольников комфортный диапазон — примерно до 7–9 этажа.</li>
+            <li><strong>Евродвушку 42 м² «на вырост».</strong> Через два года ребёнку понадобится дверь, а её негде взять. Смена квартиры обойдётся дороже, чем разница в цене сегодня.</li>
+            <li><strong>Смежные (проходные) комнаты.</strong> Комната, через которую ходят, не является ничьей территорией.</li>
+            <li><strong>Один санузел на три комнаты.</strong> Планировка, которая ежедневно производит ссоры.</li>
+            <li><strong>Двор-парковку и дом у магистрали ближе 150 м без шумозащиты.</strong> Это одновременно шум, воздух и невозможность отпустить ребёнка гулять.</li>
+            <li><strong>Квартиру, выбранную по красивому ремонту.</strong> Ремонт меняется за два месяца, планировка и окружение — никогда.</li>
+          </ul>
+        </div>
+        <p class="quote">Считайте не метры, а двери: сколько людей одновременно могут побыть одни.<span>Принцип выбора №2</span></p>
+      </div>
+    </div>
+    <div class="dim"></div>
+  </div>
+</section>
+
+<!-- 04 — ЛИДЕР -->
+<section class="persona" id="s4">
+  <div class="wrap">
+    <div class="persona-hero">
+      <div>
+        <span class="chapter-num">04 / 07</span>
+        <p class="who" style="margin-top:16px"><b>квартира для лидера:</b> собственника, руководителя, публичная профессия</p>
+        <h2>Сцена, кулисы<br>и место,<br>где вас никто<br>не трогает</h2>
+      </div>
+      <div>
+        <p class="lead">
+          Ваш рабочий день состоит из решений, и почти все они принимаются на фоне
+          усталости. Поэтому дом лидера решает две задачи, которых нет у других:
+          он должен выдерживать людей — партнёров, команду, гостей — и при этом
+          гарантировать полное восстановление. Если эти два режима смешаны,
+          дом перестаёт быть домом и становится продолжением офиса.
+        </p>
+        <div class="bars">
+          <div class="bar"><span class="l">Восстановление</span><span class="t"><i style="width:100%"></i></span><span class="v">критично</span></div>
+          <div class="bar"><span class="l">Приём гостей</span><span class="t"><i style="width:85%"></i></span><span class="v">очень важно</span></div>
+          <div class="bar"><span class="l">Приватность</span><span class="t"><i style="width:95%"></i></span><span class="v">критично</span></div>
+          <div class="bar"><span class="l">Вид и высота</span><span class="t"><i style="width:78%"></i></span><span class="v">важно</span></div>
+          <div class="bar"><span class="l">Ликвидность</span><span class="t"><i style="width:90%"></i></span><span class="v">очень важно</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="figure">
+      <svg viewBox="0 0 1010 340" role="img" aria-label="План квартиры для лидера">
+        <g fill="none" stroke="var(--ink)" stroke-width="1.4"><rect x="60" y="40" width="620" height="250"/></g>
+        <g fill="none" stroke="var(--ink)" stroke-width="1">
+          <path d="M60 200 L440 200 M440 40 L440 290 M580 40 L580 200 M180 200 L180 290"/>
+        </g>
+        <g stroke="var(--rule)" stroke-width="4">
+          <path d="M100 40 L400 40"/><path d="M470 290 L650 290"/><path d="M680 90 L680 170"/>
+        </g>
+        <g fill="var(--ink)" font-family="Cormorant Garamond, serif" font-size="20">
+          <text x="250" y="120" text-anchor="middle">Парадная зона</text>
+          <text x="120" y="250" text-anchor="middle">Холл</text>
+          <text x="310" y="250" text-anchor="middle">Кабинет</text>
+          <text x="510" y="120" text-anchor="middle">Спальня</text>
+          <text x="630" y="120" text-anchor="middle">Гардероб</text>
+          <text x="560" y="250" text-anchor="middle">Приватная гостиная</text>
+        </g>
+        <g fill="var(--ink-mute)" font-family="Montserrat, sans-serif" font-size="9" letter-spacing="2">
+          <text x="250" y="140" text-anchor="middle">КУХНЯ-СТОЛОВАЯ · ВИД · ГОСТИ</text>
+          <text x="120" y="268" text-anchor="middle">ГОСТЕВОЙ С/У</text>
+          <text x="310" y="268" text-anchor="middle">ПЕРЕГОВОРЫ ИЗ ДОМА</text>
+          <text x="560" y="268" text-anchor="middle">ТОЛЬКО ДЛЯ СВОИХ</text>
+        </g>
+        <g stroke="var(--red)" stroke-width="1" fill="none">
+          <path d="M120 290 L120 220 L250 220 L250 150" stroke-dasharray="5 4"/>
+          <path d="M440 40 L440 290" stroke-width="2"/>
+          <path d="M700 165 L760 165"/>
+        </g>
+        <g fill="var(--red)" font-family="Montserrat, sans-serif" font-size="9.5" letter-spacing="2">
+          <text x="250" y="142" text-anchor="middle">ПУТЬ ГОСТЯ</text>
+          <text x="452" y="34">ГРАНИЦА</text>
+          <text x="765" y="155">ГОСТЬ НЕ ПЕРЕСЕКАЕТ</text>
+          <text x="765" y="169">ЭТУ ЛИНИЮ. ЕСЛИ</text>
+          <text x="765" y="183">ПЕРЕСЕКАЕТ — ВЫ</text>
+          <text x="765" y="197">НЕ ОТДЫХАЕТЕ ДОМА</text>
+        </g>
+        <text x="60" y="315" fill="var(--ink-mute)" font-family="Montserrat, sans-serif" font-size="9" letter-spacing="2">СХЕМА 4 · РАЗДЕЛЕНИЕ ПУБЛИЧНОГО И ЛИЧНОГО КОНТУРА</text>
+      </svg>
+      <div class="figcap"><span>Принцип: гость видит одну половину квартиры и никогда — вторую</span><b>Оптимум: 100–160 м², два контура</b></div>
+    </div>
+
+    <div class="split">
+      <div>
+        <h3>Что должно быть в квартире</h3>
+        <ul class="check">
+          <li><strong>Два контура: публичный и приватный.</strong> Прихожая → гостевой санузел → кухня-столовая → кабинет. Спальня, гардероб, ванная — за границей, которую гость не пересекает. Это единственный способ принимать людей дома и не терять восстановление.</li>
+          <li><strong>Кабинет с закрывающейся дверью и нейтральным фоном.</strong> Не «уголок», а комната: звонок с инвестором из кухни стоит вам позиции в переговорах. Проверьте, что за спиной ровная стена и сбоку окно.</li>
+          <li><strong>Спальня как самое тихое и тёмное место дома.</strong> Не смежная с лифтом, кухней и лестницей, плотные шторы, никакой рабочей техники. Качество ваших решений завтра — это качество вашего сна сегодня.</li>
+          <li><strong>Высокий этаж и дальний вид — обоснованно.</strong> Открытая перспектива снижает ощущение давления среды и восстанавливает внимание. Но верхний этаж стоит брать только при двух лифтах, тихой кровле и без техэтажа с оборудованием над головой.</li>
+          <li><strong>Потолки от 3 м и большая столовая.</strong> Пространство, где помещаются 8–10 человек, — это ваш социальный капитал: связи чаще возникают там, где людям физически удобно задержаться.</li>
+          <li><strong>Инфраструктура дома, а не только квартиры.</strong> Консьерж, охраняемый паркинг, лифт до паркинга, служба сервиса. Каждый бытовой процесс, который дом берёт на себя, возвращает вам самый дорогой ресурс — контроль над своим временем.</li>
+          <li><strong>Адрес, который останется дорогим.</strong> Локация, вид и репутация дома — то, что нельзя воспроизвести. Именно за это платит следующий покупатель.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="plate">
+          <h4>Что не покупать лидеру</h4>
+          <ul class="check no">
+            <li><strong>Квартиру, где спальня видна от входной двери.</strong> Приватности нет по планировке — исправить нельзя.</li>
+            <li><strong>Уникальную планировку под конкретный вкус.</strong> Пятиугольные комнаты, спальня без окна, гардероб вместо кухни: продавать это придётся с дисконтом и очень долго.</li>
+            <li><strong>Апартаменты вместо квартиры «ради вида».</strong> Другой статус помещения: иные налоги и коммунальные тарифы, нет постоянной регистрации, соседство может оказаться коммерческим. Берите осознанно и только под расчёт доходности.</li>
+            <li><strong>Последний этаж под техническим этажом с оборудованием.</strong> Гул вентиляции и лифтовых механизмов идёт по конструкциям и не убирается отделкой.</li>
+            <li><strong>Самую дорогую квартиру в среднем доме.</strong> Потолок цены задаёт дом и район, а не ваш ремонт. Лучше средняя квартира в сильном доме.</li>
+            <li><strong>Объект без сценария выхода.</strong> Если вы не можете назвать, кто купит это у вас через 5 лет и почему, — это не актив, а расход.</li>
+          </ul>
+        </div>
+        <p class="quote">Главный дивиденд состояния — возможность распоряжаться своим временем. Дом либо возвращает его, либо забирает.<span>Принцип выбора №3</span></p>
+      </div>
+    </div>
+    <div class="dim"></div>
+  </div>
+</section>
+
+<!-- 05 — ЭТАЖ / ПЛАНИРОВКА / ОКРУЖЕНИЕ -->
+<section class="chapter wrap" id="s5">
+  <div class="chapter-head">
+    <span class="chapter-num">05 / 07</span>
+    <h2>Этаж, планировка,<br>окружение —<br>и связь с доходом</h2>
+    <p class="lead narrow">
+      Разберём три параметра, которые нельзя изменить после покупки, и один честный ответ
+      на вопрос «как квартира влияет на деньги».
+    </p>
+  </div>
+
+  <h3>Этажность: у каждого диапазона своя цена</h3>
+  <div class="figure">
+    <svg viewBox="0 0 1010 420" role="img" aria-label="Шкала этажности с характеристиками">
+      <g stroke="var(--rule)" stroke-width="1" fill="none">
+        <path d="M120 30 L120 380"/>
+        <path d="M120 30 L820 30 M120 100 L820 100 M120 170 L820 170 M120 240 L820 240 M120 310 L820 310 M120 380 L820 380"/>
+      </g>
+      <g fill="var(--ink)" font-family="Cormorant Garamond, serif" font-size="22">
+        <text x="30" y="72">25+</text><text x="30" y="142">16–24</text><text x="30" y="212">8–15</text>
+        <text x="30" y="282">3–7</text><text x="30" y="352">1–2</text>
+      </g>
+      <g fill="var(--ink-soft)" font-family="Lora, serif" font-size="14">
+        <text x="145" y="60">Панорама, тишина от улицы, статус.</text>
+        <text x="145" y="82">Зависимость от лифта, ветер, сложная эвакуация, перегрев летом.</text>
+        <text x="145" y="130">Дальний вид без «отрыва» от земли. Обычно самый дорогой диапазон в доме.</text>
+        <text x="145" y="152">Требует минимум двух лифтов и тихой кровли.</text>
+        <text x="145" y="200">Свет и вид выше окружающей застройки, шум улицы уже ослаблен.</text>
+        <text x="145" y="222">Рабочий компромисс для большинства сценариев.</text>
+        <text x="145" y="270">Быстрый выход на улицу, ребёнок гуляет сам, видно двор.</text>
+        <text x="145" y="292">Лучший диапазон для семьи с дошкольниками.</text>
+        <text x="145" y="340">Дешевле, доступно без лифта. Но: шум двора, пыль, чужие взгляды в окна,</text>
+        <text x="145" y="362">часто холодный пол и подвальная сырость. Хуже всего продаётся.</text>
+      </g>
+      <g stroke="var(--red)" stroke-width="1" fill="none">
+        <path d="M835 100 L835 240"/><path d="M835 100 l-4 6 M835 100 l4 6 M835 240 l-4 -6 M835 240 l4 -6"/>
+        <path d="M835 310 L835 380"/><path d="M835 310 l-4 6 M835 310 l4 6 M835 380 l-4 -6 M835 380 l4 -6"/>
+      </g>
+      <g fill="var(--red)" font-family="Montserrat, sans-serif" font-size="9.5" letter-spacing="2">
+        <text x="850" y="160">ЛИДЕР</text><text x="850" y="176">творец</text>
+        <text x="850" y="350">СЕМЬЯ</text>
+        <text x="850" y="366">С ДЕТЬМИ</text>
+      </g>
+      <text x="120" y="405" fill="var(--ink-mute)" font-family="Montserrat, sans-serif" font-size="9" letter-spacing="2">СХЕМА 5 · ВЫБОР ЭТАЖА ПОД СЦЕНАРИЙ, А НЕ ПОД ПРАЙС</text>
+    </svg>
+    <div class="figcap"><span>Этаж влияет и на жизнь, и на скорость перепродажи</span><b>Первый и последний — всегда с дисконтом</b></div>
+  </div>
+
+  <div class="grid three">
+    <div class="cell">
+      <span class="num">Планировка · правило 1</span>
+      <h4>Полезная площадь важнее общей</h4>
+      <p>Коридоры, простенки и «мёртвые» углы могут съедать до 15–20% метража. Считайте площадь комнат, в которых вы реально живёте, и делите цену объекта на неё — сравнение объектов сразу становится честным.</p>
+    </div>
+    <div class="cell">
+      <span class="num">Планировка · правило 2</span>
+      <h4>Квартира должна выдерживать три сценария</h4>
+      <p>Проверьте, помещаются ли в неё ваши варианты будущего: ребёнок, переход на удалёнку, родители на месяц, продажа через 5 лет. Планировка, которая работает только в одном сценарии, — самая дорогая ошибка.</p>
+    </div>
+    <div class="cell">
+      <span class="num">Планировка · правило 3</span>
+      <h4>Проверяйте не комнаты, а пути</h4>
+      <p>Пройдите по плану своим обычным утром: кровать → санузел → кухня → выход. Если маршрут проходит через чью-то спальню или упирается в дверь, которую нельзя открыть при открытом шкафу, — это конфликт на каждый день.</p>
+    </div>
+  </div>
+
+  <div class="dim"></div>
+
+  <h3>Окружение: 15 минут, которые определяют вашу жизнь</h3>
+  <div class="split">
+    <div>
+      <p>
+        Городские исследователи давно показали простую вещь: человек ходит пешком со скоростью
+        около 5 км/ч, и на этой скорости ему нужно, чтобы «картинка» менялась каждые несколько метров.
+        Улица со сплошными глухими фасадами измеримо повышает скуку и стресс — люди ускоряют шаг
+        и не задерживаются. Улица с витринами, входами и кафе рождает случайные встречи.
+      </p>
+      <p>
+        А случайные встречи — это не «атмосфера». Это социальные связи, которые в исследованиях
+        благополучия оказываются одним из самых сильных предикторов удовлетворённости жизнью,
+        и одновременно — источник возможностей, работы и партнёрств.
+      </p>
+      <p>
+        <strong>Практический тест:</strong> встаньте у подъезда и засеките 15 минут пешком.
+        Что попало в круг — то и станет вашей реальной жизнью. Остальное вы будете «планировать»,
+        но так и не начнёте.
+      </p>
+    </div>
+    <div class="figure" style="margin-top:0">
+      <svg viewBox="0 0 420 400" role="img" aria-label="Радиусы пешей доступности">
+        <g fill="none" stroke="var(--rule)" stroke-width="1">
+          <circle cx="200" cy="190" r="55"/><circle cx="200" cy="190" r="105"/><circle cx="200" cy="190" r="155"/>
+        </g>
+        <circle cx="200" cy="190" r="4" fill="var(--red)"/>
+        <g fill="var(--ink)" font-family="Cormorant Garamond, serif" font-size="16">
+          <text x="200" y="160" text-anchor="middle">5 мин</text>
+          <text x="200" y="115" text-anchor="middle">10 мин</text>
+          <text x="200" y="62" text-anchor="middle">15 мин</text>
+        </g>
+        <g fill="var(--ink-mute)" font-family="Montserrat, sans-serif" font-size="8.5" letter-spacing="1.6">
+          <text x="200" y="178" text-anchor="middle">КОФЕ · ПРОДУКТЫ</text>
+          <text x="200" y="133" text-anchor="middle">ШКОЛА · СПОРТ · АПТЕКА</text>
+          <text x="200" y="80" text-anchor="middle">ПАРК · МЕТРО · ВРАЧ</text>
+        </g>
+        <g stroke="var(--red)" stroke-width="1" fill="none" stroke-dasharray="4 4"><path d="M200 345 L200 380"/></g>
+        <text x="200" y="396" text-anchor="middle" fill="var(--red)" font-family="Montserrat, sans-serif" font-size="9.5" letter-spacing="2">ВНЕ КРУГА — ТО, ЧЕГО В ВАШЕЙ ЖИЗНИ НЕ БУДЕТ</text>
+      </svg>
+      <div class="figcap"><span>Схема 6 · тест 15 минут</span><b>Проверяйте маршрутом, а не картой</b></div>
+    </div>
+  </div>
+
+  <div class="dim"></div>
+
+  <h3>Как это связано с доходом — честный ответ</h3>
+  <div class="narrow">
+    <p>
+      Квартира не приносит денег сама по себе. Она действует двумя путями, и оба измеримы.
+    </p>
+    <p>
+      <strong>Первый путь — ресурсный.</strong> Свет, тишина, приватность и короткая дорога
+      возвращают вам сон, внимание и спокойствие. Из этих трёх вещей состоят решения,
+      а из решений — доход. Плохая среда не делает вас беднее в моменте: она делает вас
+      уставшим, и вы принимаете более слабые решения год за годом.
+    </p>
+    <p>
+      <strong>Второй путь — капитальный.</strong> Ровно те параметры, которые нельзя изменить
+      (локация, вид, этаж, планировка, репутация дома), определяют, насколько быстро и дорого
+      объект продаётся. Ремонт стареет, адрес — нет. Поэтому правильно выбранная квартира —
+      это одновременно инструмент вашей работоспособности и ликвидный актив.
+    </p>
+    <p class="quote" style="max-width:38ch">
+      Богатство — это не то, что видно. Это активы, которые ещё не потрачены, и время,
+      которым вы распоряжаетесь сами.
+      <span>По мотивам «Психологии денег» Моргана Хаузела</span>
+    </p>
+  </div>
+</section>
+
+<!-- 06 — СТОП-ЛИСТ -->
+<section class="chapter dark" id="s6">
+  <div class="wrap">
+    <div class="chapter-head">
+      <span class="chapter-num" style="color:var(--red-bright)">06 / 07</span>
+      <h2>Стоп-лист:<br>что не покупать никому</h2>
+      <p class="lead narrow">
+        Десять признаков, каждый из которых нельзя исправить ремонтом и каждый из которых
+        снижает и качество жизни, и цену перепродажи. Если в объекте есть два и более пункта —
+        отказывайтесь, даже если цена кажется выгодной.
+      </p>
+    </div>
+    <div class="stop">
+      <div class="stop-row"><div class="what">Окна в стену соседнего дома ближе 15 метров</div><div class="why"><b>Что теряете</b>Свет, вид и приватность одновременно. Самый частый источник «непонятной» тяжести в квартире и первая причина торга при продаже.</div></div>
+      <div class="stop-row"><div class="what">Дом у магистрали ближе 150 метров без шумозащиты</div><div class="why"><b>Что теряете</b>Постоянный шум влияет на сон и сердечно-сосудистую систему; открыть окно летом невозможно. Стеклопакет решает проблему только при закрытых окнах.</div></div>
+      <div class="stop-row"><div class="what">Спальня, смежная с лифтовой шахтой, лестницей или мусоропроводом</div><div class="why"><b>Что теряете</b>Низкочастотный гул и вибрация передаются по конструкциям. Ни одна отделка это не убирает.</div></div>
+      <div class="stop-row"><div class="what">Квартира над магазином, кафе, входной группой или паркингом</div><div class="why"><b>Что теряете</b>Вытяжка, запахи, разгрузка по утрам, чужие люди у подъезда. Плюс устойчивый дисконт при перепродаже.</div></div>
+      <div class="stop-row"><div class="what">Кухня-ниша без окна и без вытяжного канала</div><div class="why"><b>Что теряете</b>Воздух и свет в главной зоне дома. Часто это ещё и признак перепланировки, не оформленной по документам.</div></div>
+      <div class="stop-row"><div class="what">Проходные и смежные комнаты</div><div class="why"><b>Что теряете</b>Приватность каждого жильца. Комната, через которую ходят, не принадлежит никому — отсюда постоянное напряжение.</div></div>
+      <div class="stop-row"><div class="what">Коридоры и «мёртвые» углы больше 15% площади</div><div class="why"><b>Что теряете</b>Вы платите за метры, в которых нельзя жить. Пересчитайте цену на полезную площадь — объект часто оказывается самым дорогим в подборке.</div></div>
+      <div class="stop-row"><div class="what">Первый этаж без высокого цоколя и последний под техэтажом</div><div class="why"><b>Что теряете</b>Внизу — шум, пыль и чужие взгляды; наверху — гул оборудования и риски по кровле. Оба варианта продаются дольше и дешевле.</div></div>
+      <div class="stop-row"><div class="what">Уникальная планировка «под себя»</div><div class="why"><b>Что теряете</b>Ликвидность. Чем сильнее объект заточен под один вкус, тем уже круг покупателей и тем больше дисконт при выходе.</div></div>
+      <div class="stop-row"><div class="what">Объект, выбранный по ремонту и рендерам</div><div class="why"><b>Что теряете</b>Всё вышеперечисленное сразу. Отделка — единственный параметр, который вы можете изменить за два месяца; именно поэтому она не должна быть аргументом.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 — КАК Я ПОМОГАЮ -->
+<section class="chapter dark" id="s7" style="border-top:1px solid rgba(255,255,255,.14)">
+  <div class="wrap">
+    <div class="chapter-head">
+      <span class="chapter-num" style="color:var(--red-bright)">07 / 07</span>
+      <h2>Как я подбираю<br>квартиру</h2>
+      <p class="lead narrow">
+        Я работаю не от базы объектов, а от вашего сценария жизни. Сначала мы описываем,
+        каким должен стать ваш день, и только потом ищем стены, которые это выдержат.
+        Параллельно я считаю объект как актив: что с ним будет через 5 лет.
+      </p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div>
+          <h4>Разбор сценария</h4>
+          <p>Час разговора: как проходит ваш день, где вы работаете, кто живёт с вами, что вас раздражает в текущем жилье. На выходе — список требований к среде, а не список «две комнаты, метро рядом».</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h4>Фильтр по среде</h4>
+          <p>Отсеиваю объекты по параметрам, которые нельзя изменить: шум, свет, вид, этаж, планировочная логика, окружение в радиусе 15 минут. Обычно на этом шаге отпадает 80% вариантов из вашей подборки.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h4>Проверка объекта как актива</h4>
+          <p>Считаю ликвидность и сценарий выхода: кто купит это у вас через 5 лет, за счёт чего вырастет цена, какие риски у застройщика, дома и документов. Отдельно — по апартаментам и нестандартным лотам.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h4>Просмотры по протоколу</h4>
+          <p>Смотрим 3–5 объектов, а не 30. В будний вечер и в выходное утро, с проверкой шума, света, соседей и подъезда. Даю письменное заключение по каждому: что можно исправить, что нельзя.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h4>Переговоры и сделка</h4>
+          <p>Аргументированный торг на основе найденных недостатков, проверка документов, сопровождение до подписания и передачи ключей.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="dark cta">
+  <div class="wrap">
+    <p class="eyebrow" style="color:var(--red-bright)">Следующий шаг</p>
+    <p class="lead">
+      Расскажите о своём сценарии — и я подберу квартиру, которая будет работать
+      на вас.
+    </p>
+    <a class="btn" href="https://t.me/chu_alena">Занять своё место</a>
+
+    <div class="contacts">
+      <span>Андреева Алёна</span>
+      <span>Брокер по инвестиционной недвижимости</span>
+      <span>Telegram: <a href="https://t.me/chu_alena">@chu_alena</a></span>
+    </div>
+  </div>
+</section>
+
+<!-- ИСТОЧНИКИ -->
+<section class="wrap sources">
+  <p class="eyebrow">На чём основан гайд</p>
+  <h3>Исследования и книги</h3>
+  <ul>
+    <li><b>McMains &amp; Kastner (2011)</b> — конкуренция объектов за ресурсы зрительной коры: почему беспорядок снижает концентрацию.</li>
+    <li><b>Meyers-Levy &amp; Zhu (2007)</b> — «эффект собора»: высота потолка и тип мышления.</li>
+    <li><b>Boubekri et al. (2014)</b> — дневной свет на рабочем месте, сон и качество жизни.</li>
+    <li><b>Ulrich (1984)</b> — вид из окна и скорость восстановления после операции.</li>
+    <li><b>Kaplan &amp; Kaplan</b> — теория восстановления внимания: почему природа отдыхает «сама».</li>
+    <li><b>Bronzaft &amp; McCarthy (1975)</b> — шум транспорта и успеваемость детей.</li>
+    <li><b>WHO Environmental Noise Guidelines (2018)</b> — пороги шума и здоровье.</li>
+    <li><b>Knight &amp; Haslam (2010)</b> — авторство над пространством и продуктивность.</li>
+    <li><b>Stutzer &amp; Frey (2008)</b> — «парадокс маятниковой миграции»: цена долгой дороги.</li>
+    <li><b>Appleton, теория prospect–refuge</b> — предпочтение мест с обзором и укрытием.</li>
+    <li><b>Колин Эллард, «Среда обитания»</b> — реакции тела и психики на архитектуру, эксперименты с фасадами.</li>
+    <li><b>Ян Гейл, «Города для людей»</b> — пешеходный масштаб, «мягкие края», жизнь между зданиями.</li>
+    <li><b>Чарльз Монтгомери, «Happy City»</b> — городская среда, социальные связи и счастье.</li>
+    <li><b>Кристиан Норберг-Шульц, «Genius Loci»</b> — характер места и привязанность к нему.</li>
+    <li><b>Витольд Рыбчинский, «Дом. Краткая история идеи»</b> — как формировались понятия уюта и приватности.</li>
+    <li><b>Морган Хаузел, «Психология денег»</b> — капитал, контроль над временем и цена спокойного сна.</li>
+  </ul>
+</section>
+
+<footer class="wrap">
+  <div class="foot">
+    <span>Пространство решает · гайд</span>
+    <span>Андреева Алёна · @chu_alena</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.chapter, .persona, .toc, .sources');
+  els.forEach(function(el){ el.classList.add('reveal'); });
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    els.forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
